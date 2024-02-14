@@ -14,44 +14,37 @@ import java.util.*;
 @Service
 public class ProductsServiceMongoDb implements ProductsService {
 
+    private final ProductMongoRepository productMongoRepository;
+
     @Autowired
-    private ProductRepository productRepository;
-
-    @Override
-    public List<Product> all() {
-        List<Product> products;
-       if(productRepository != null){
-           return productRepository.all();
-       } else {
-           // If productRepository is null, create a default list for testing
-           products = Arrays.asList(
-                   new Product("1", "Whole Milk", "Whole Milk 200ml", "Dairy", 15.488),
-                   new Product("2", "Skim Milk", "Skim Milk 300ml", "Dairy", 19.526)
-           );
-       }
-        return products;
-    }
-    @Override
-    public Optional<Product> findById(String id) {
-        return productRepository.findById(id);
-
+    public ProductsServiceMongoDb(ProductMongoRepository productMongoRepository) {
+        this.productMongoRepository = productMongoRepository;
     }
 
     @Override
     public Product save(Product product) {
-        return productRepository.save(product);
+        return productMongoRepository.save(product);
     }
 
     @Override
-    public Product update(Product product, String productId) {
-        return productRepository.update(product, productId);
+    public Optional<Product> findById(String id) {
+        return productMongoRepository.findById(id);
+    }
+
+    @Override
+    public List<Product> all() {
+        return productMongoRepository.findAll();
     }
 
     @Override
     public void deleteById(String id) {
-        Optional<Product> idProduct = findById(id);
-        if(idProduct.isPresent()){
-            productRepository.delete(id);
-        }
+        productMongoRepository.deleteById(id);
+    }
+
+    @Override
+    public Product update(Product product, String productId) {
+
+
+        return productMongoRepository.save(product);
     }
 }

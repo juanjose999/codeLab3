@@ -9,13 +9,13 @@ import java.util.Optional;
 
 public interface ProductsService {
 
-    List<Product> all();
+    Product save(Product product);
 
     Optional<Product> findById(String id);
 
-    Product save(Product product);
-
-    Product update(Product product, String ProductId);
+    List<Product> all();
 
     void deleteById(String id);
+
+    Product update(Product Product, String ProductId);
 }
