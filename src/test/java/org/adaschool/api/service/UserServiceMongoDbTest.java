@@ -2,7 +2,7 @@ package org.adaschool.api.service;
 
 import org.adaschool.api.repository.user.User;
 import org.adaschool.api.repository.user.UserDto;
-import org.adaschool.api.repository.user.UserMongoRepository;
+import org.adaschool.api.repository.user.repository.UserMongoRepository;
 import org.adaschool.api.service.user.UsersServiceMongoDb;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;

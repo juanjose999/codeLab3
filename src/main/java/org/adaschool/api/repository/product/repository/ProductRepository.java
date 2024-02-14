@@ -1,13 +1,11 @@
-package org.adaschool.api.service.product;
+package org.adaschool.api.repository.product.repository;
 
 import org.adaschool.api.repository.product.Product;
-import org.adaschool.api.repository.product.ProductDto;
-import org.adaschool.api.repository.product.ProductResponseDto;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface ProductsService {
+public interface ProductRepository {
 
     List<Product> all();
 
@@ -17,5 +15,6 @@ public interface ProductsService {
 
     Product update(Product product, String ProductId);
 
-    void deleteById(String id);
+    void delete(String id);
+
 }

@@ -2,8 +2,7 @@ package org.adaschool.api.repository.product;
 
 import java.util.List;
 
-public class ProductDto {
-
+public class ProductResponseDto {
     private final String description;
     private final String category;
     private final List<String> tags;
@@ -11,7 +10,7 @@ public class ProductDto {
     private final String imageUrl;
     private final String name;
 
-    public ProductDto() {
+    public ProductResponseDto() {
         this.name = "";
         this.description = "";
         this.category = "";
@@ -20,7 +19,7 @@ public class ProductDto {
         this.imageUrl = "";
     }
 
-    public ProductDto(String name, String description, String category, List<String> tags, double price, String imageUrl) {
+    public ProductResponseDto(String name, String description, String category, List<String> tags, double price, String imageUrl) {
         this.name = name;
         this.description = description;
         this.category = category;
@@ -28,30 +27,5 @@ public class ProductDto {
         this.price = price;
         this.imageUrl = imageUrl;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
 
 }

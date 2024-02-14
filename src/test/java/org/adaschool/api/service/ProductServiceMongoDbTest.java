@@ -2,7 +2,7 @@ package org.adaschool.api.service;
 
 import org.adaschool.api.repository.product.Product;
 import org.adaschool.api.repository.product.ProductDto;
-import org.adaschool.api.repository.product.ProductMongoRepository;
+import org.adaschool.api.repository.product.repository.ProductMongoRepository;
 import org.adaschool.api.service.product.ProductsServiceMongoDb;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;

@@ -33,6 +33,15 @@ public class Product implements Serializable {
         this.price = price;
     }
 
+    public Product(String name, String description, String category, List<String> tags, double price, String imageUrl) {
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.tags = tags;
+        this.price = price;
+        this.imageUrl = imageUrl;
+    }
+
     public Product(ProductDto productDto) {
         this.id = null;
         this.name = productDto.getName();
@@ -42,6 +51,7 @@ public class Product implements Serializable {
         this.price = productDto.getPrice();
         this.imageUrl = productDto.getImageUrl();
     }
+
 
     public String getId() {
         return id;

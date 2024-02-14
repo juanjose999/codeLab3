@@ -1,7 +1,9 @@
 package org.adaschool.api.service.user;
 
+import org.adaschool.api.repository.product.Product;
 import org.adaschool.api.repository.user.User;
-import org.adaschool.api.repository.user.UserMongoRepository;
+import org.adaschool.api.repository.user.repository.UserMongoRepository;
+import org.adaschool.api.repository.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,40 +12,36 @@ import java.util.Optional;
 
 @Service
 public class UsersServiceMongoDb implements UsersService {
-
-    private final UserMongoRepository userMongoRepository;
-
     @Autowired
-    public UsersServiceMongoDb(UserMongoRepository userMongoRepository) {
-        this.userMongoRepository = userMongoRepository;
-    }
-
+    private UserRepository userMongoRepository;
     @Override
     public User save(User user) {
-        //TODO implement this method
-        return null;
+        return userMongoRepository.save(user);
     }
 
     @Override
     public Optional<User> findById(String id) {
-        //TODO implement this method
+        Optional<User> foundUser = userMongoRepository.findById(id);
+        if(foundUser!=null){
+            return userMongoRepository.findById(id);
+        }
         return Optional.empty();
     }
 
     @Override
     public List<User> all() {
-        //TODO implement this method
-        return null;
+        List<User> userList = userMongoRepository.all();
+        return userList;
     }
 
     @Override
     public void deleteById(String id) {
-        //TODO implement this method
+        userMongoRepository.delete(id);
     }
 
     @Override
     public User update(User user, String userId) {
-        //TODO implement this method
-        return null;
+        return userMongoRepository.update(user, userId);
+
     }
 }
