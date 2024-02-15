@@ -1,15 +1,12 @@
 package org.adaschool.api.service.product;
 
 import org.adaschool.api.repository.product.Product;
-import org.adaschool.api.repository.product.ProductDto;
-import org.adaschool.api.repository.product.ProductMapper;
-import org.adaschool.api.repository.product.ProductResponseDto;
 import org.adaschool.api.repository.product.repository.ProductMongoRepository;
-import org.adaschool.api.repository.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductsServiceMongoDb implements ProductsService {
@@ -42,9 +39,23 @@ public class ProductsServiceMongoDb implements ProductsService {
     }
 
     @Override
-    public Product update(Product product, String productId) {
+    public Product update(Product updatedProduct, String productId) {
+        Optional<Product> existingProductOptional = productMongoRepository.findById(productId);
 
+        if (existingProductOptional.isPresent()) {
+            Product existingProduct = existingProductOptional.get();
+            // Update the existing product with the new details
+            existingProduct.setName(updatedProduct.getName());
+            existingProduct.setDescription(updatedProduct.getDescription());
+            existingProduct.setCategory(updatedProduct.getCategory());
+            existingProduct.setPrice(updatedProduct.getPrice());
 
-        return productMongoRepository.save(product);
+            // Save the updated product
+            return productMongoRepository.save(existingProduct);
+        } else {
+            // Handle the case when the product with the given ID is not found
+            // You might want to throw an exception or handle it in another way based on your requirements
+            return null; // Or throw an exception
+        }
     }
 }
