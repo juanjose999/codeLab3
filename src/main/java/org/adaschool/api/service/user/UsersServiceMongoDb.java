@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class UsersServiceMongoDb implements UsersService {
     @Autowired
-    private UserRepository userMongoRepository;
+    private UserMongoRepository userMongoRepository;
     @Override
     public User save(User user) {
         return userMongoRepository.save(user);
@@ -30,18 +30,18 @@ public class UsersServiceMongoDb implements UsersService {
 
     @Override
     public List<User> all() {
-        List<User> userList = userMongoRepository.all();
+        List<User> userList = userMongoRepository.findAll();
         return userList;
     }
 
     @Override
     public void deleteById(String id) {
-        userMongoRepository.delete(id);
+        userMongoRepository.deleteById(id);
     }
 
     @Override
     public User update(User user, String userId) {
-        return userMongoRepository.update(user, userId);
+        return userMongoRepository.save(user);
 
     }
 }

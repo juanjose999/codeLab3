@@ -1,7 +1,7 @@
-package org.adaschool.api.controller;
+package org.adaschool.api.controller.user;
 
 import org.adaschool.api.repository.user.User;
-import org.adaschool.api.repository.user.repository.UserRepository;
+import org.adaschool.api.service.user.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,27 +15,27 @@ import java.util.Optional;
 @RequestMapping("/v1/users")
 public class UserController {
     @Autowired
-    private UserRepository userRepository;
+    private UsersService usersService;
 
     @GetMapping
     public ResponseEntity<List<User>> all(){
-        return new ResponseEntity(userRepository.all(), HttpStatus.OK);
+        return new ResponseEntity(usersService.all(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(@PathVariable String id){
-        return new ResponseEntity(userRepository.findById(id), HttpStatus.OK);
+        return new ResponseEntity(usersService.findById(id), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<User> save(@RequestBody User user ){
-        return new ResponseEntity<>(userRepository.save(user),HttpStatus.CREATED);
+        return new ResponseEntity<>(usersService.save(user),HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable String id, @RequestBody User user){
         try{
-            Optional<User> isUpdateUser = Optional.ofNullable(userRepository.update(user, id));
+            Optional<User> isUpdateUser = Optional.ofNullable(usersService.update(user, id));
             if(isUpdateUser.isPresent()){
                 return new ResponseEntity("the booking update is ok." , HttpStatus.OK);
             }else {
